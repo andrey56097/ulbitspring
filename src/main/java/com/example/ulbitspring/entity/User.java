@@ -2,12 +2,10 @@ package com.example.ulbitspring.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class User {
@@ -20,6 +18,9 @@ public class User {
     @NotBlank
     @Size(min=2, max=30)
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Todo> todos;
 
     public User() {
     }
@@ -52,5 +53,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 }
