@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "todo")
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,9 @@ public class Todo {
     @Size(min=2, max=30)
     private String title;
     private Boolean completed;
+    @NotBlank
+    @Size(min=2, max=30)
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
